@@ -1,3 +1,5 @@
+// In-game computer game logic
+
 let rand = Math.random();
 
 function getComputerChoice() {
@@ -12,6 +14,8 @@ function getComputerChoice() {
 }
 
 console.log(getComputerChoice());
+
+// Player game logic
 
 function getHumanChoice() {
     let humanChoice = prompt('Make your choice!');
