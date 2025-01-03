@@ -23,12 +23,12 @@ console.log(getComputerChoice());
 // Player game logic
 
 function getHumanChoice() {
-    let humanChoice = prompt('Make your choice!');
-    if (humanChoice === 'Rock') {
+    let humanChoice = prompt('Make your choice!').toLowerCase();
+    if (humanChoice === 'rock') {
         return 'Rock';
-    } else if(humanChoice === 'Paper') {
+    } else if(humanChoice === 'paper') {
         return 'Paper';
-    } else if (humanChoice === 'Scissors') {
+    } else if (humanChoice === 'scissors') {
         return 'Scissors';
     } else {
         return 'Invalid choice... Please try again.'
