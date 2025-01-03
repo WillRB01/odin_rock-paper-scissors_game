@@ -1,3 +1,8 @@
+// Players score variables
+
+let humanScore = 0;
+let computerScore = 0;
+
 // In-game computer game logic
 
 let rand = Math.random();
