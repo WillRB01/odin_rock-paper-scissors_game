@@ -1,10 +1,4 @@
-// Players score variables
-
-let humanScore = 0;
-let computerScore = 0;
-
 // Player game logic
-
 function getHumanChoice() {
     let humanInput = prompt('Make your choice!').toLowerCase();
     if (humanInput === 'rock') {
@@ -19,7 +13,6 @@ function getHumanChoice() {
 }
 
 // In-game computer game logic
-
 function getComputerChoice() {
     let computerOutput = Math.floor(Math.random() * 12) + 1;
     if (computerOutput <= 4) {
@@ -31,67 +24,106 @@ function getComputerChoice() {
     }
 }
 
-// Play round game logic
-
+// Play game, game logic
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-function playRound(humanChoice, computerChoice) {
-    switch(true) {
-        case (humanSelection === 'Rock' && computerSelection === 'Scissors') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You win! Rock beats scissors.');
-            return humanScore += 1;
+function playGame() {
+
+    //Initialize scores, number of maximum rounds and winning score
+    let humanScore = 0;
+    let computerScore = 0;
+    const winningScore = 5;
+    const maxRounds = 20;
+
+    //Round logic
+    for (let round = 1; round <= maxRounds; round++) {
+
+        //Score checker
+        if (humanScore === winningScore) {
+            console.log('You win the game!')
             break;
-        case (humanSelection === 'Rock' && computerSelection === 'Paper') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You lose! Paper beats rock.');
-            return computerScore += 1;
+        } else if (computerScore === winningScore) {
+            console.log('You lost... Computer wins the game!')
             break;
-        case (humanSelection === 'Rock' && computerSelection === 'Rock') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('It\s a draw! Try again. :)');
-            break;
-        case (humanSelection === 'Paper' && computerSelection === 'Rock') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You win! Paper beats rock.');
-            return humanScore += 1;
-            break;
-        case (humanSelection === 'Paper' && computerSelection === 'Scissors'):
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You lose! Scissors beats paper.');
-            return computerScore += 1;
-            break;
-        case (humanSelection === 'Paper' && computerSelection === 'Paper') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('It\s a draw! Try again. :)');
-            break;
-        case (humanSelection === 'Scissors' && computerSelection === 'Paper') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You win! Scissors beats paper.');
-            return humanScore += 1;
-            break;
-        case (humanSelection === 'Scissors' && computerSelection === 'Rock'):
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('You lose! Rock beats scissors.');
-            return computerScore += 1;
-            break;
-        case (humanSelection === 'Scissors' && computerSelection === 'Scissors') :
-            console.log(humanSelection);
-            console.log(computerSelection);
-            console.log('It\s a draw! Try again. :)');
-            break;
-        default: 
-        console.log('Not an option... Please try again.');
+        }
+
+        // Play round game logic
+        function playRound(humanChoice, computerChoice) {
+            switch(true) {
+                case (humanSelection === 'Rock' && computerSelection === 'Scissors') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You win! Rock beats scissors.');
+                    ++humanScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Rock' && computerSelection === 'Paper') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You lose! Paper beats rock.');
+                    ++computerScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Rock' && computerSelection === 'Rock') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('It\s a draw! Try again. :)');
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Paper' && computerSelection === 'Rock') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You win! Paper beats rock.');
+                    ++humanScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Paper' && computerSelection === 'Scissors'):
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You lose! Scissors beats paper.');
+                    ++computerScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Paper' && computerSelection === 'Paper') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('It\s a draw! Try again. :)');
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Scissors' && computerSelection === 'Paper') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You win! Scissors beats paper.');
+                    ++humanScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Scissors' && computerSelection === 'Rock'):
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('You lose! Rock beats scissors.');
+                    ++computerScore;
+                    console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                case (humanSelection === 'Scissors' && computerSelection === 'Scissors') :
+                    console.log(humanSelection);
+                    console.log(computerSelection);
+                    console.log('It\s a draw! Try again. :)');
+                    getHumanChoice(); getComputerChoice();
+                    break;
+                default: 
+                console.log('Not an option... Please try again.');
+            }
+        }
+
+        playRound(humanSelection, computerSelection);
     }
 }
 
-playRound(humanSelection, computerSelection);
+playGame();
