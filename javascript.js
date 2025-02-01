@@ -49,6 +49,23 @@ function playGame() {
             console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
         };
     };
+
+    //Play round function is called, with the score checker determining when to end the game
+    for (let i = 0; i < maxRounds; i++) {
+        //Score checker logic
+        if (humanScore === winningScore) {
+            console.log('Congrats, you win the game!');
+            break;
+        } else if (computerScore === winningScore) {
+            console.log('You lost... computer wins the game!');
+            break;
+        };
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    };
 };
 
 playGame();
