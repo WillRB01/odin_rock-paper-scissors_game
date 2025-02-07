@@ -6,19 +6,29 @@ function getComputerChoice() {
 };
 
 //Player game logic
-function getHumanChoice() {
-    const humanChoice = prompt('Enter your choice: rock, paper, or scissors').toLowerCase();
-    if (humanChoice === 'rock') {
-        return 'rock';
-    } else if(humanChoice === 'paper') {
-        return 'paper';
-    } else if (humanChoice === 'scissors') {
-        return 'scissors';
-    } else {
-        console.log('Invalid choice... please enter rock, paper, or scissors.');
-        return getHumanChoice();
-    };
-};
+const rockBtn = document.querySelector('.rockBtn');
+rockBtn.addEventListener('click', () => {
+    const humanSelection = 'rock';
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+});
+
+const paperBtn = document.querySelector('.paperBtn');
+paperBtn.addEventListener('click', () => {
+    const humanSelection = 'paper';
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+});
+
+const scissorsBtn = document.querySelector('.scissorsBtn');
+scissorsBtn.addEventListener('click', () => {
+    const humanSelection = 'scissors';
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+});
 
 function playGame() {
     //Initialize player scores, the max number of rounds & the game winning score
@@ -49,23 +59,7 @@ function playGame() {
             console.log(`Me: ${humanScore} - Computer: ${computerScore}`);
         };
     };
-
-    //Play round function is called, with the score checker determining when to end the game
-    for (let i = 0; i < maxRounds; i++) {
-        //Score checker logic
-        if (humanScore === winningScore) {
-            console.log('Congrats, you win the game!');
-            break;
-        } else if (computerScore === winningScore) {
-            console.log('You lost... computer wins the game!');
-            break;
-        };
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-    };
 };
 
 playGame();
+
