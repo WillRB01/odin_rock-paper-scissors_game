@@ -13,9 +13,9 @@ function playGame() {
 
     //Player game logic
     const displayArea = document.querySelector('.display-area');
-    displayArea.style.whiteSpace = "pre-line;"
+    displayArea.style.whiteSpace = "pre-line";
 
-    const rockBtn = document.querySelector('.rockBtn');
+    const rockBtn = document.querySelector('.rock-btn');
     rockBtn.addEventListener('click', () => {
         const humanSelection = 'rock';
         const computerSelection = getComputerChoice();
@@ -23,7 +23,7 @@ function playGame() {
         playRound(humanSelection, computerSelection);
     });
 
-    const paperBtn = document.querySelector('.paperBtn');
+    const paperBtn = document.querySelector('.paper-btn');
     paperBtn.addEventListener('click', () => {
         const humanSelection = 'paper';
         const computerSelection = getComputerChoice();
@@ -31,7 +31,7 @@ function playGame() {
         playRound(humanSelection, computerSelection);
     });
 
-    const scissorsBtn = document.querySelector('.scissorsBtn');
+    const scissorsBtn = document.querySelector('.scissors-btn');
     scissorsBtn.addEventListener('click', () => {
         const humanSelection = 'scissors';
         const computerSelection = getComputerChoice();
@@ -41,24 +41,34 @@ function playGame() {
 
     //Play round logic
     function playRound(humanChoice, computerChoice) {
-        if (humanChoice === 'rock' && computerChoice === 'scissors') {
-            displayArea.textContent = 'You win! Rock beats scissors.' + '\n';
+        if (humanScore === winningScore - 1) {
             ++humanScore;
-            displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
-        } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-            displayArea.textContent = 'You win! Paper beats rock.';
-            ++humanScore;
-            displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
-        } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-            displayArea.textContent = 'You win! Scissors beats paper.' + '\n';
-            ++humanScore;
-            displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
-        } else if (humanChoice === computerChoice) {
-            displayArea.textContent = 'It\'s a draw! Try again. :)';
-        } else {
-            displayArea.textContent = `You lose... ${computerChoice} beats ${humanChoice}.` + '\n';
+            displayArea.textContent = 'Congrats, you win the game!' + '\n';
+            return displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+        } else if (computerScore === winningScore - 1) {
             ++computerScore;
-            displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+            displayArea.textContent = 'You lost... computer wins the game!' + '\n';
+            return displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+        } else if (humanScore !== winningScore && computerScore !== winningScore) {
+            if (humanChoice === 'rock' && computerChoice === 'scissors') {
+                displayArea.textContent = 'You win! Rock beats scissors.' + '\n';
+                ++humanScore;
+                displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+            } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+                displayArea.textContent = 'You win! Paper beats rock.' + '\n';
+                ++humanScore;
+                displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+            } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+                displayArea.textContent = 'You win! Scissors beats paper.' + '\n';
+                ++humanScore;
+                displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+            } else if (humanChoice === computerChoice) {
+                displayArea.textContent = 'It\'s a draw! Try again. :)';
+            } else {
+                displayArea.textContent = `You lose... ${computerChoice} beats ${humanChoice}.` + '\n';
+                ++computerScore;
+                displayArea.textContent += `Me: ${humanScore} - Computer: ${computerScore}`;
+            };
         };
     };
 };
